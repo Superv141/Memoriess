@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>A Place for Our Memories</title>
+
+<style>
+:root{
+  --main:#6b5b95;
+  --bg1:#f6f1ff;
+  --bg2:#fff7ee;
+  --card:#ffffff;
+}
+
+*{
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:linear-gradient(135deg,var(--bg1),var(--bg2));
+  color:#333;
+}
+
+/* ================= NAVBAR ================= */
+.navbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(12px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 40px;
+  box-shadow:0 6px 25px rgba(0,0,0,0.08);
+}
+
+.logo{
+  font-size:20px;
+  font-weight:600;
+  color:var(--main);
+}
+
+.nav-links{
+  list-style:none;
+  display:flex;
+  gap:30px;
+  margin:0;
+  padding:0;
+}
+
+.nav-links a{
+  position:relative;
+  text-decoration:none;
+  color:#444;
+  font-weight:500;
+  padding:6px 0;
+  transition:color .3s ease, transform .3s ease;
+}
+
+.nav-links a::after{
+  content:'';
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0%;
+  height:3px;
+  background:var(--main);
+  border-radius:10px;
+  transition:width .3s ease;
+}
+
+.nav-links a:hover{
+  color:var(--main);
+  transform:translateY(-2px);
+}
+
+.nav-links a:hover::after{
+  width:100%;
+}
+
+/* ================= HERO ================= */
+header{
+  text-align:center;
+  padding:90px 20px;
+}
+
+header h1{
+  font-size:48px;
+  margin-bottom:10px;
+}
+
+header p{
+  font-style:italic;
+  color:var(--main);
+}
+
+/* ================= SECTION ================= */
+section{
+  max-width:1000px;
+  margin:auto;
+  padding:60px 20px;
+}
+
+section h2{
+  color:var(--main);
+  margin-bottom:25px;
+  font-size:32px;
+}
+
+/* ================= CARD ================= */
+.card{
+  background:var(--card);
+  padding:25px;
+  border-radius:18px;
+  margin-bottom:25px;
+  box-shadow:0 10px 30px rgba(0,0,0,.1);
+  animation:fadeUp .8s ease;
+}
+
+/* ================= POEMS ================= */
+.poem{
+  white-space:pre-line;
+  font-style:italic;
+  line-height:1.7;
+}
+
+/* ================= CHATS ================= */
+.chats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+
+.chat{
+  background:#f9f7ff;
+  padding:20px;
+  border-radius:15px;
+  font-size:15px;
+}
+
+/* ================= BUTTON ================= */
+button{
+  background:var(--main);
+  color:white;
+  border:none;
+  padding:14px 30px;
+  border-radius:30px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#584a7a;
+}
+
+/* ================= HIDDEN NOTE ================= */
+#hiddenNote{
+  display:none;
+  margin-top:20px;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  text-align:center;
+  padding:40px;
+  font-size:14px;
+  opacity:.7;
+}
+
+/* ================= ANIMATION ================= */
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:translateY(0);}
+}
+/* Main heading RGB */
+.rgb-heading {
+    font-size: 48px;
+    font-weight: bold;
+    background: linear-gradient(
+        90deg,
+        #6a5acd,
+        #8a2be2,
+        #ff69b4,
+        #9370db,
+        #6a5acd
+    );
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rgbFlow 6s ease infinite;
+}
+
+/* Subheading RGB */
+.rgb-sub {
+    font-size: 18px;
+    font-style: italic;
+    background: linear-gradient(
+        90deg,
+        #7b68ee,
+        #ba55d3,
+        #ffb6c1
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Section title */
+.rgb-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #6a5acd;
+}
+
+/* Animation */
+@keyframes rgbFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+  /* menu container */
+.top-menu {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* menu links */
+.top-menu a {
+    text-decoration: none;
+    background: linear-gradient(
+        90deg,
+        #6a5acd,
+        #8a2be2,
+        #ff69b4,
+        #9370db
+    );
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: menuRGB 8s ease infinite;
+    transition: transform 0.3s ease;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar top-menu">
+  <div class="logo">Memories</div>
+  <ul class="nav-links">
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#poems">Poems</a></li>
+    <li><a href="#chats">Chats</a></li>
+    <li><a href="#saumya">For Saumya</a></li>
+    <li><a href="#her-poem">Her Poem</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header>
+  <h1 class="rgb-heading">A Place for Our Memories</h1>
+  <p class="rgb-sub">Still here, still best friends forever</p>
+</header>
+
+<!-- OUR STORY -->
+<section id="story">
+  <h2 class="rgb-title">Our Story</h2>
+
+  <div class="card">
+    This friendship didn’t start loudly.  
+    It started with homework doubts, small questions, and late-night chats.
+    Slowly, conversations became comfort.
+  </div>
+
+  <div class="card">
+    No expectations. No pressure.
+    Just honesty, trust, and staying —
+    even when answers were missing.
+  </div>
+</section>
+
+<!-- POEMS -->
+<section id="poems">
+  <h2 class="rgb-title">Poems</h2>
+
+  <div class="card poem">
+Friends?
+
+It was just a question,
+typed quietly at midnight.
+
+No background music.
+No dramatic pause.
+
+Just trust,
+answering back.
+  </div>
+
+  <div class="card poem">
+We talked about maths,
+about life,
+about things that don’t get solved.
+
+Problems stayed.
+But they felt lighter.
+  </div>
+
+  <div class="card poem">
+Still here.
+Still listening.
+Still friends.
+
+That’s rare.
+  </div>
+</section>
+
+<!-- POEM WRITTEN BY HER -->
+<section id="her-poem">
+  <h2 class="rgb-title">A Poem She Wrote for Me</h2>
+
+  <div class="card poem">
+<strong>Ek Chasmish :)</strong>
+
+Mera dost chasmish hai,
+Sochta bhot kuch hai.
+Mera Mr. Captain hai,
+Deta har problem ka solution hai.
+No.1 advisor hai,
+Smjne ki kosis karta
+Meri problems ka starrr hai.
+yh mera shinchan hai
+Kahta khudko batman hai.
+
+Mountain dew se obsessed hai,
+Iski life bhi meri life ki trh messed hai
+Rhta life se preshan hai
+But iski advise ....
+Mujko deti jeevan dan hai .
+
+Kabhi kabhi
+overthinking ko lekar chala jata hai
+At peak...
+To be honest,, bnda hai bada unique.....
+Understanding ,trustful
+Or innocent hai
+Supporting 100 percent hai .
+
+Ab to hm dono ,
+Ek dusro ko support karte hai
+Jindagi ki kitaab Ko padhne ki
+Koshish karte hai.
+
+Jaise roj subah suraj,
+Dharti pe apni kirne failaata hai,
+Jaise chand har raat aasmaan me aata hai,
+Thik vaise hi hamari ......
+Dosti ho jaye jiska aant
+Kahi ghumm sa ho jaye :).
+
+
+
+<strong>Unexpected friendship</strong>
+
+Real life me nhi hui bat
+Online whatsapp pe hui mulaqat
+Online chatting karke
+Vibe match karna kala hai
+Yeh muje is dost se pata chla hai
+Phli bar mera dost
+textrovert bana hai
+Chatting ghanto karta hai
+But real life me introvert hai
+
+Online and real life
+Yeh banda same nhi hai
+Dost to mere bhot hai
+But...
+Iske jaisa koi nhi hai ✨
+Itna sochta hai jitna
+Soch skta koi nhi
+Confusion hota hai muje
+Hai yh insan ........?
+Ya Mars ,Jupiter se aya
+Praani koi .
+Pta hai tum introvert ho
+Jaise ho bhot ache ho
+Class me bate kar liya karo
+Itna bhi mt socha karo
+Tum pr trust bhi hai
+2025 me ...
+One of the best thing
+Hamari dosti hai .....:)
+  </div>
+
+  <div class="card">
+    This poem is <strong>one of the most valuable things in my life</strong>.
+    It’s not just words — it’s trust, effort, and a friendship that truly matters.
+  </div>
+</section>
+
+
+<!-- REMEMBERABLE CHATS -->
+<section id="chats">
+  <h2 class="rgb-title">Rememberable Chats</h2>
+
+  <div class="chats">
+    <div class="chat">
+      “Friends ?? 😅”  
+      <br>— the simplest question that meant a lot.
+    </div>
+
+    <div class="chat">
+      Late-night maths discussions that slowly turned into life talks.
+    </div>
+
+    <div class="chat">
+      Sharing things that were never said to anyone else —
+      and knowing they were safe.
+    </div>
+
+    <div class="chat">
+      Talking about dreams, fears, and confusion —
+      without judgement.
+    </div>
+  </div>
+</section>
+
+<!-- FOR SAUMYA -->
+<section id="saumya">
+  <h2 class="rgb-title">For Saumya</h2>
+
+  <div class="card">
+    Saumya, this website exists because you stayed genuine.
+    Thank you for trusting me with your thoughts,
+    your worries, and your time.
+    This friendship matters.
+  </div>
+
+  <button onclick="showNote()">Click when you feel low</button>
+
+  <div id="hiddenNote" class="card">
+    You are stronger than you think.  
+    You are doing better than you realize.  
+    And you are not alone.
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  Made from real conversations 🤍
+</footer>
+
+<script>
+function showNote(){
+  document.getElementById("hiddenNote").style.display="block";
+}
+</script>
+
+</body>
+</html>
+
+
+
